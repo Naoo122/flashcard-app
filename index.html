@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Vocab - Premium Flashcards</title>
+    <meta name="description" content="A premium, interactive flashcard application for learning English vocabulary efficiently.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <main class="app-container">
+        <header>
+            <h1>Lumina Vocab</h1>
+            <p class="subtitle">フラッシュカードで直感的に学ぶ</p>
+        </header>
+
+        <section class="progress-section">
+            <div class="progress-bar-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="progress-text" id="progress-text">1 / 10</div>
+        </section>
+
+        <section class="card-container">
+            <div class="flashcard" id="flashcard">
+                <div class="card-face card-front">
+                    <span class="card-label">English</span>
+                    <h2 class="word" id="en-word">Resilient</h2>
+                    <div class="hint-icon"><i class="fa-solid fa-rotate"></i> タップして裏返す</div>
+                </div>
+                <div class="card-face card-back">
+                    <span class="card-label">日本語</span>
+                    <h2 class="meaning" id="ja-meaning">回復力のある、立ち直りが早い</h2>
+                    <div class="divider"></div>
+                    <div class="example-box">
+                        <p class="example-en" id="en-example">She is highly resilient and handles stress well.</p>
+                        <p class="example-ja" id="ja-example">彼女は非常に回復力があり、ストレスにもうまく対処する。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="controls">
+            <button class="btn btn-icon" id="prev-btn" title="前の単語"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="main-actions">
+                <button class="btn btn-secondary" id="learning-btn">もう一度</button>
+                <button class="btn btn-primary" id="known-btn">覚えた！</button>
+            </div>
+            <button class="btn btn-icon" id="next-btn" title="次の単語"><i class="fa-solid fa-chevron-right"></i></button>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
