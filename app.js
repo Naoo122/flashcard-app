@@ -38,6 +38,8 @@ const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const knownBtn = document.getElementById('known-btn');
 const learningBtn = document.getElementById('learning-btn');
+const pronounceBtnFront = document.getElementById('pronounce-btn-front');
+const pronounceExampleBtn = document.getElementById('pronounce-example-btn');
 
 // Settings & API Elements
 const openSettingsBtn = document.getElementById('open-settings-btn');
@@ -151,6 +153,46 @@ knownBtn.addEventListener('click', (e) => {
 learningBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     nextCard();
+});
+
+// Pronunciation Functionality
+function speakText(text) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.9; // Slightly slower for better understanding
+        
+        // Voice selection (optional, improves quality if a good English voice is available)
+        const voices = window.speechSynthesis.getVoices();
+        const enVoice = voices.find(voice => voice.lang.startsWith('en-'));
+        if (enVoice) {
+            utterance.voice = enVoice;
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } else {
+        alert("お使いのブラウザは音声合成に対応していません。");
+    }
+}
+
+// Load voices once to ensure they are available when requested
+if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+    };
+}
+
+pronounceBtnFront.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const currentWord = words[currentIndex].en;
+    speakText(currentWord);
+});
+
+pronounceExampleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const currentExample = words[currentIndex].exampleEn;
+    speakText(currentExample);
 });
 
 // Settings Logic
